@@ -8,10 +8,7 @@
           New project
 
   %ul.well-list.dash-list
-    - projects.each do |project|
-      %li.project-row
-        = render "project", project: project
-
+    = render partial: "shared/project", collection: projects
     - if projects.blank?
       %li
         %h3.nothing_here_message There are no projects here.
