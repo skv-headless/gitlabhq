@@ -46,6 +46,10 @@ module Gitlab
       }x
     end
 
+    def git_ssh
+      /\A(\w*)@([\w\.]*):([\w\/-]*)\.git\z/
+    end
+
     protected
 
     def default_regex

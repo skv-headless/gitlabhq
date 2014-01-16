@@ -99,8 +99,9 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :path, scope: :namespace_id
 
   validates :import_url,
-    format: { with: URI::regexp(%w(git http https)), message: "should be a valid url" },
-    if: :import?
+            format: { with: Regexp.union(URI::regexp(%w(git http https)), Gitlab::Regex.git_ssh),
+                      message: "should be a valid url" },
+            if: :import?
 
   validate :check_limit, on: :create
 
